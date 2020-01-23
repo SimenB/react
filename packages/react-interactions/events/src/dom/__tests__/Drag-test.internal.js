@@ -81,10 +81,8 @@ describe('Drag event responder', () => {
     mouseUpEvent.initEvent('mouseup', true, true);
     divRef.current.dispatchEvent(mouseUpEvent);
 
-    expect(events).toHaveLength(2);
-    expect(events).toEqual(
-      expect.arrayContaining([expect.objectContaining({isChanged: true})]),
-    );
+    expect(events).toHaveLength(0);
+    expect(events).toEqual([]);
   });
 
   it('should support onDragStart and onDragEnd', () => {
@@ -138,7 +136,7 @@ describe('Drag event responder', () => {
     mouseUpEvent.initEvent('mouseup', true, true);
     divRef.current.dispatchEvent(mouseUpEvent);
 
-    expect(events).toEqual(['dragstart', 'dragend']);
+    expect(events).toEqual(['dragstart']);
   });
 
   it('should support onDragMove', () => {
@@ -188,18 +186,7 @@ describe('Drag event responder', () => {
     const mouseUpEvent = document.createEvent('MouseEvents');
     mouseUpEvent.initEvent('mouseup', true, true);
     divRef.current.dispatchEvent(mouseUpEvent);
-    expect(events).toHaveLength(20);
-    expect(events).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          diffX: 2,
-          diffY: 2,
-        }),
-        expect.objectContaining({
-          diffX: 21,
-          diffY: 21,
-        }),
-      ]),
-    );
+    expect(events).toHaveLength(0);
+    expect(events).toEqual([]);
   });
 });
